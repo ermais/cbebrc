@@ -4,7 +4,11 @@ import 'package:cbebrc/components/statement_card.dart';
 import 'package:flutter/material.dart';
 
 class CBEButton extends StatelessWidget {
-  const CBEButton({super.key});
+  const CBEButton(this.prefixIcon,this._suffixIcon,this.labelName,{super.key});
+  final IconData prefixIcon;
+  final IconData _suffixIcon;
+  final String labelName;
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +44,29 @@ class CBEButton extends StatelessWidget {
                 textAlignVertical: TextAlignVertical.top,
                 controller: TextEditingController(),
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                     enabled: true,
                     prefixIcon: Padding(
-                      padding: EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 8),
                       child: Row(children: [
                         Icon(
-                          Icons.account_balance,
+                          prefixIcon,
                           color: cbeBrandColor,
                           size: 24,
                         ),
-                        VerticalDivider(
+                        const VerticalDivider(
                           color: cbeBrandColor,
                           indent: 4,
                           endIndent: 4,
                         )
                       ]),
                     ),
-                    border: OutlineInputBorder(
+                    suffixIcon: Icon(
+                      _suffixIcon != null ? _suffixIcon : Icons.do_disturb_on_outlined,
+                      color: cbeBrandColor,
+                        size: 16,
+                    ),
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(
                           color: cbeBrandColor,
                           width: 2,
@@ -65,7 +74,7 @@ class CBEButton extends StatelessWidget {
                           strokeAlign: BorderSide.strokeAlignOutside),
                       gapPadding: 8,
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(
                           color: cbeBrandColor,
                           width: 2,
@@ -73,7 +82,7 @@ class CBEButton extends StatelessWidget {
                           strokeAlign: BorderSide.strokeAlignOutside),
                       gapPadding: 8,
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(
                           color: cbeBrandColor,
                           width: 2,
@@ -82,11 +91,11 @@ class CBEButton extends StatelessWidget {
                       gapPadding: 8,
                     ),
                     labelText: "Account Number",
-                    labelStyle: TextStyle(color: cbeBrandColor, fontSize: 12)),
+                    labelStyle: const TextStyle(color: cbeBrandColor, fontSize: 12)),
               ),
             ),
           ),
-          Flexible(
+          const Flexible(
               flex: 1,
               child: Icon(
                 Icons.lock_reset_rounded,
